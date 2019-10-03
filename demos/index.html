@@ -33,13 +33,12 @@
     <nav>
       <div class="container">
         <a class="brand-logo" href="/">open-toggle</a>
-        <div
-          class="dropdown-container float-right page-open-toggle no-self-toggle"
+        <div class="dropdown-container float-right"
         >
-          <a href="javascript:void(0)" class="btn-menu material-icons">
+          <a href="#page-open-block" class="btn-menu material-icons basic-open-toggle no-self-toggle">
             apps
           </a>
-          <div class="dropdown-box nav-links">
+          <div class="dropdown-box nav-links" id="page-open-block">
             <a href="#demos">Demos</a>
             <a href="#usage">Usage</a>
             <a href="#options">Options</a>
@@ -80,12 +79,13 @@
                   <!-- Button 1 -->
                   <div class="dropdown-container left-aligned">
                     <a
+                      href="#btn1"
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
                     >
                       Button 1
                     </a>
-                    <div class="dropdown-box nav-links">
+                    <div class="dropdown-box nav-links" id="btn1">
                       <a href="#1">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
@@ -93,12 +93,13 @@
                   <!-- Button 2 -->
                   <div class="dropdown-container left-aligned">
                     <a
+                      href="btn2"                      
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
                     >
                       Button 2
                     </a>
-                    <div class="dropdown-box nav-links">
+                    <div class="dropdown-box nav-links" id="btn2">
                       <a href="#1">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
@@ -106,12 +107,13 @@
                   <!-- Button 3 -->
                   <div class="dropdown-container left-aligned">
                     <a
+                      href="#btn3"
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
                     >
                       Button 3
                     </a>
-                    <div class="dropdown-box nav-links">
+                    <div class="dropdown-box nav-links" id="btn3">
                       <a href="#1">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
@@ -221,10 +223,10 @@
     ></script>
     <script src="./js/rainbow-custom.min.js"></script>
     <script src="./js/jquery.open-toggle.js"></script>
-    <script src="/jquery.open-toggle.js"></script>
+    <script src="../jquery.open-toggle.js"></script>
     <script>
       $(document).ready(function() {
-        $(".page-open-toggle").openToggle();
+        // $(".page-open-toggle").openToggle();
         $(".basic-open-toggle").openToggle();
       });
     </script>
