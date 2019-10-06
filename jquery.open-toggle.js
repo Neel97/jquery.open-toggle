@@ -8,46 +8,33 @@
  * https://github.com/htshah
  */
 (function($) {
-  $.fn.openToggle = function(className = "open") {
-    var wasClicked = false;
-    var clickedBlockId = null;
-    that = this;
-    $(that).each(function(index, curEle){
-      if($(curEle).attr('href') != undefined) $($(curEle).attr('href')).show().toggle();
-    });
+  $.fn.openToggle = function(className) {
+    className = className || "open";
+    var wasClicked = false,
+      that = this,
+      toggleEle = null;
 
     that.click(function(e) {
-      e.preventDefault();
       wasClicked = true;
-      var ele = $(this);
-      clickedBlockId = ele.attr('href');
+      toggleEle = this.attributes["data-open-toggle-id"]? $("#" + this.attributes["data-open-toggle-id"].value): $(this);
+      that.not(toggleEle).map(function(){
+        rmClassOf = $(this).attr('data-open-toggle-id')? $('#' + $(this).attr('data-open-toggle-id')): $(this);
+        rmClassOf.removeClass(className);
+      });
 
-      if(that.not(ele).length > 0){
-         $(that.not(ele)).each(function(index, otherThanCurrent){
-            $(otherThanCurrent).removeClass(className);
-            if($(otherThanCurrent).attr('href') != undefined) $($(otherThanCurrent).attr('href')).hide();
-         }); 
-      }
-
-      if (ele.is("." + className + ".no-self-toggle")) {
+      if (toggleEle.is("." + className + ".no-self-toggle")) {
         return;
       }
 
-      ele.toggleClass(className);
-      if($(ele).attr('href') != undefined) $($(ele).attr('href')).toggle();
-
+      toggleEle.toggleClass(className);
     });
-
-    $count = 0 ;
 
     $(document).click(function(e) {
       e.stopPropagation();
-      isntClickedBlockId = (e.target.hasAttribute("id"))? ((('#'+e.target.attributes.id.value) !== clickedBlockId)): true;
-      if (!wasClicked && isntClickedBlockId) {
-        that.removeClass(className);
-        if(clickedBlockId != null) $(clickedBlockId).hide();
+      if (!wasClicked) {
+        toggleEle.removeClass(className);
       }
-      wasClicked = clickedBlockId = false;
+      wasClicked = false;
     });
   };
 })(window.jQuery || window.Zepto);

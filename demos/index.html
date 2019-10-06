@@ -28,17 +28,27 @@
     <link rel="stylesheet" href="./css/rainbow.theme.github.css" />
     <!-- Style.css -->
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- <style>
+      .open{
+        display: block;
+        background: rgba(0,0,0,0.7);
+        visibility: visible;
+        opacity: 1;
+      }
+    </style> -->
   </head>
   <body>
     <nav>
       <div class="container">
         <a class="brand-logo" href="/">open-toggle</a>
-        <div class="dropdown-container float-right"
+        <div
+          class="dropdown-container float-right basic-open-toggle no-self-toggle"
+          data-open-toggle-id="nav-block"
         >
-          <a href="#page-open-block" class="btn-menu material-icons basic-open-toggle no-self-toggle">
+          <a href="javascript:void(0)" class="btn-menu material-icons">
             apps
           </a>
-          <div class="dropdown-box nav-links" id="page-open-block">
+          <div class="dropdown-box nav-links" id="nav-block">
             <a href="#demos">Demos</a>
             <a href="#usage">Usage</a>
             <a href="#options">Options</a>
@@ -79,13 +89,13 @@
                   <!-- Button 1 -->
                   <div class="dropdown-container left-aligned">
                     <a
-                      href="#btn1"
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
+                      data-open-toggle-id="dd1"
                     >
                       Button 1
                     </a>
-                    <div class="dropdown-box nav-links" id="btn1">
+                    <div class="dropdown-box nav-links" id="dd1">
                       <a href="#1">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
@@ -93,27 +103,26 @@
                   <!-- Button 2 -->
                   <div class="dropdown-container left-aligned">
                     <a
-                      href="btn2"                      
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
+                      data-close-toggle-id="dd2"
                     >
                       Button 2
                     </a>
-                    <div class="dropdown-box nav-links" id="btn2">
-                      <a href="#1">Link 1</a>
+                    <div class="dropdown-box nav-links">
+                      <a href="#1" id="dd2">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
                   </div>
                   <!-- Button 3 -->
                   <div class="dropdown-container left-aligned">
                     <a
-                      href="#btn3"
                       href="javascript:void(0)"
                       class="btn btn-primary basic-open-toggle"
                     >
                       Button 3
                     </a>
-                    <div class="dropdown-box nav-links" id="btn3">
+                    <div class="dropdown-box nav-links">
                       <a href="#1">Link 1</a>
                       <a href="#2">Link 2</a>
                     </div>
