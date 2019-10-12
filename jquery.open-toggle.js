@@ -8,33 +8,47 @@
  * https://github.com/htshah
  */
 (function($) {
-  $.fn.openToggle = function(className) {
-    className = className || "open";
+  $.fn.openToggle = function(className = "open") {
     var wasClicked = false,
       that = this,
-      toggleEle = null;
+      docToggle = false;
+      toggleEle = $(null);
+      closeEle = false;
+
+    function getEle(dataId, defaultVal){
+      return dataId? $('#' + dataId): defaultVal;
+    }
 
     that.click(function(e) {
       wasClicked = true;
-      toggleEle = this.attributes["data-open-toggle-id"]? $("#" + this.attributes["data-open-toggle-id"].value): $(this);
+      var self = $(this);
+
+      docToggle = self.hasClass('no-doc-toggle')? true: false;
+      toggleEle = getEle(self.attr('data-open-toggle-id'), self);
+      closeEle = getEle(self.attr('data-close-toggle-id'), false);
+
       that.not(toggleEle).map(function(){
-        rmClassOf = $(this).attr('data-open-toggle-id')? $('#' + $(this).attr('data-open-toggle-id')): $(this);
+        rmClassOf = getEle($(this).attr('data-open-toggle-id'), $(this));
         rmClassOf.removeClass(className);
       });
 
       if (toggleEle.is("." + className + ".no-self-toggle")) {
         return;
-      }
+      }      
 
-      toggleEle.toggleClass(className);
+      // console.log('Before: ' + toggleEle.toggleClass(className) + toggleEle.attr('class'));
+      toggleEle.toggleClass(className);    
+      // console.log('After: ' + toggleEle.toggleClass(className) + toggleEle.attr('class'));
     });
 
     $(document).click(function(e) {
       e.stopPropagation();
-      if (!wasClicked) {
+      // var isCloseEle = closeEle && ($(e.target).attr('id') === closeEle || false);
+      if (!wasClicked) {      
         toggleEle.removeClass(className);
       }
       wasClicked = false;
+      closeEle = false;
     });
   };
 })(window.jQuery || window.Zepto);
