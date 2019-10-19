@@ -27,7 +27,9 @@
       toggleEle = getEle(self.attr('data-open-toggle-id'), self);
       closeEle = getEle(self.attr('data-close-toggle-id'), false);
 
-      that.not(toggleEle).map(function(){
+      console.log(toggleEle);
+
+      that.not(self).map(function(curVal){
         rmClassOf = getEle($(this).attr('data-open-toggle-id'), $(this));
         rmClassOf.removeClass(className);
       });
@@ -36,9 +38,9 @@
         return;
       }      
 
-      // console.log('Before: ' + toggleEle.toggleClass(className) + toggleEle.attr('class'));
+      // console.log('Before: ' + toggleEle.hasClass(className) + toggleEle.attr('class'));
       toggleEle.toggleClass(className);    
-      // console.log('After: ' + toggleEle.toggleClass(className) + toggleEle.attr('class'));
+      // console.log('After: ' + toggleEle.hasClass(className) + toggleEle.attr('class'));
     });
 
     $(document).click(function(e) {
